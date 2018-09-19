@@ -14,25 +14,14 @@ class Knight(Warrior):
 
 
 def fight(unit_1, unit_2):
-    j = True
-    i = 1
-    print(unit_1, unit_2)
-    while (unit_1.health > 0) and (unit_2.health > 0):
-        if(i%2):
+    while unit_1.is_alive and unit_2.is_alive:
             unit_2.health -= unit_1.attack
-            print(unit_2, unit_2.health, i)
-            i += 1
-        else:
-            unit_1.health -= unit_2.attack
-            print(unit_1, unit_1.health, i)
-            i += 1
-    if(unit_1.health > 0):
-        print(1)
-        j = True
+            if unit_2.is_alive:
+                unit_1.health -= unit_2.attack
+    if unit_1.health > 0:
+        return True
     else:
-        print(0)
-        j = False
-    return j    
+        return False    
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
@@ -43,7 +32,7 @@ if __name__ == '__main__':
     dave = Warrior()
     mark = Warrior()
     
-    print(chuck.is_alive)
+    print("WORK!!!")
 
     assert fight(chuck, bruce) == True
     assert fight(dave, carl) == False    
